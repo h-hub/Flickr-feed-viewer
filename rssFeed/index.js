@@ -1,5 +1,9 @@
-var rssFeedService = require('./rss_feed')
-
-module.exports = {
-  create: rssFeedService.create
-}
+const express = require('express');
+ 
+const rssFeed = require('./controller');
+ 
+const router = express.Router();
+ 
+router.get('/flickerFeed', rssFeed.getRssFeed);
+ 
+module.exports = router;
