@@ -3,4 +3,6 @@
 
 <ul *ngFor="let item of feedContent?.items">
     <li>{{item?.title}}</li>
+    <p>Date: {{item?.pubDate}}</p>
+    <div [innerHTML]=item?.content></div>
 </ul>
