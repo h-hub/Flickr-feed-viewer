@@ -1,15 +1,15 @@
 const Parser = require('rss-parser');
 const parser = new Parser();
 
-const getFeed = async () => {
+const getFeedContent = async () => {
     try {
         let feed = await parser.parseURL('https://www.reddit.com/.rss');
-        return feed.title;
+        return feed;
     } catch (e) {
         throw new Error(e.message)
     }
 };
 
 module.exports = {
-    getFeed
+    getFeedContent
 }

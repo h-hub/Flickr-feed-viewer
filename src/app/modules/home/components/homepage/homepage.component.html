@@ -1,1 +1,6 @@
-<p>homepage works!</p>
+<h2>homepage works!</h2>
+<h3>{{feedContent?.title}}</h3>
+
+<ul *ngFor="let item of feedContent?.items">
+    <li>{{item?.title}}</li>
+</ul>

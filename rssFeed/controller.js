@@ -1,10 +1,9 @@
 const feedService = require('./service');
 
 const getRssFeed = async (req, res, next) => {
-
   try {
-    let feedContent = await feedService.getFeed()
-    res.send({ title: feedContent})
+    let feedContent = await feedService.getFeedContent()
+    res.send(feedContent)
     next()
   } catch(e) {
     console.log(e.message)
