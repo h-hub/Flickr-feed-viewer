@@ -10,7 +10,7 @@ export class HomeService {
     constructor(private http: HttpClient) { }
 
     getFeed (): Observable<any> {
-        return this.http.get<any>('http://localhost:3001/api/flickerFeed');
+        return this.http.get<any>('api/flickerFeed');
       }
 
 }
