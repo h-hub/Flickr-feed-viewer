@@ -1,8 +1,13 @@
-<h2>homepage works!</h2>
-<h3>{{feedContent?.title}}</h3>
+<div *ngIf="!feedContent" class="text-center loading-img">
+    <img src="assets/loading.gif">
+</div>
 
-<ul *ngFor="let item of feedContent?.items">
-    <li>{{item?.title}}</li>
-    <p>Date: {{item?.pubDate}}</p>
-    <div [innerHTML]=item?.content></div>
-</ul>
+<h2>{{feedContent?.title}}</h2>
+
+<div>
+    <ul *ngFor="let item of feedContent?.items">
+        <li>{{item?.title}}</li>
+        <p>Date: {{item?.pubDate}}</p>
+        <div [innerHTML]=item?.content></div>
+    </ul>
+</div>

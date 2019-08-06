@@ -10,7 +10,7 @@ app.get('/home', (req,res) => res.sendFile(path.join(__dirname + '/dist/flickr-f
 app.use('/api', rssFeedRouter) ;
 
 app.get('/health_check', function (req, res) {
-    res.send('API is running !!?')
+    res.send('API is running !!')
   })
 
 module.exports = app;

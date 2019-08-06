@@ -8,3 +8,4 @@ Dockerfile
 .gitignore
 README.md
 dist
+proxy.conf.json
