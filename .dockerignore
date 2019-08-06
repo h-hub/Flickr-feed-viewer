@@ -3,15 +3,8 @@ npm-debug.log
 Dockerfile
 .dockerignore
 .vscode
-e2e
 .editorconfig
 .git
 .gitignore
-angular.json
-browserslist
-karma.conf.json
 README.md
-tsconfig.app.json
-tsconfig.json
-tsconfig.spec.json
-tslint.json
+dist

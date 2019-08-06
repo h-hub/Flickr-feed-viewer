@@ -1,0 +1,9 @@
+version: '3.4'
+services:
+  api:
+    build:
+      context: .
+      dockerfile: /Dockerfile
+    command: bash -c "npm run build && npm run prod-api" 
+    ports:
+      - 3001:3001

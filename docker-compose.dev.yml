@@ -1,0 +1,21 @@
+version: '3.4'
+services:  
+  ui:
+    image: node:10
+    volumes:
+      - /flickr-feed-viewer:/usr/src/
+    working_dir: /usr/src/
+    command: npm run start
+    ports:
+      - 4200:4200
+    depends_on:
+      - api
+  api:
+    image: node:10
+    volumes:
+      - /flickr-feed-viewer:/usr/src/
+    working_dir: /usr/src/
+    command: bash -c "npm install && npm run dev-api"
+    ports:
+      - 3001:3001
+      - 9229:9229
