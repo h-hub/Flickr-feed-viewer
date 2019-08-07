@@ -1,3 +1,14 @@
+<div class="row">
+    <form class="form-inline">
+        <div class="form-group mx-sm-3 mb-2">
+            <label for="tags" class="sr-only">Tag</label>
+            <input type="text" class="form-control" id="tags" placeholder="Tag" [(ngModel)]="tag" name="tag">
+        </div>
+        <button type="button" class="btn btn-primary mb-2" (click)="getFeedContent()">Search</button>
+    </form>
+</div>
+
+
 <div *ngIf="!feedContent" class="text-center loading-img">
     <img src="assets/loading.gif">
 </div>
