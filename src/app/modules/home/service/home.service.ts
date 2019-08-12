@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,  HttpHeaders  } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError  } from 'rxjs';
+import { retry, catchError } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -10,7 +11,21 @@ export class HomeService {
     constructor(private http: HttpClient) { }
 
     getFeed (tag: string): Observable<any> {
-        return this.http.get<any>('/api/flickerFeed?tag='+tag);
-    }
+        return this.http.get<any>('/api/flickerFeed?tag='+encodeURIComponent(tag))
+        .pipe(
+            retry(1),
+            catchError(err => {
+                if(err.status==404){
+                    const errorResponse = new HttpErrorResponse({
+                        error: 'test 404 error',
+                        status: 404, 
+                        statusText: 'Not Found'
+                      });
 
+                      return throwError(errorResponse);
+                }
+                return throwError(err);
+            })
+          );
+    }
 }

@@ -9,16 +9,22 @@ import { HomeService } from '../../service/home.service';
 export class HomepageComponent implements OnInit {
 
     feedContent: any;
-    tag: string="";
+    tag: string;
+    errorMsg: string;
 
-    constructor(private homeService: HomeService) { }
+    constructor(private homeService: HomeService) {
+        this.tag = "";
+     }
 
     ngOnInit() {
         this.getFeedContent();
-        this.tag = "";
     }
 
     getFeedContent(): void {
-        this.homeService.getFeed(this.tag).subscribe(feedContent => this.feedContent = feedContent);
+        this.errorMsg = "";
+        this.homeService.getFeed(this.tag).subscribe(
+            res => this.feedContent = res,
+            err => this.errorMsg = "Something went wrong. Try again."
+        );
     }
 }

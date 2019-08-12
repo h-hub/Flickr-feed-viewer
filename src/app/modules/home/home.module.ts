@@ -4,10 +4,11 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { FormsModule } from '@angular/forms';
+import { DecodeURIComponentPipe  } from './components/decode-uri-component/decode-uri-component';
 
 
 @NgModule({
-  declarations: [HomepageComponent],
+  declarations: [HomepageComponent, DecodeURIComponentPipe ],
   imports: [
     CommonModule,
     HttpClientModule,

@@ -9,11 +9,11 @@
 </div>
 
 
-<div *ngIf="!feedContent" class="text-center loading-img">
+<div *ngIf="!feedContent && !errorMsg" class="text-center loading-img">
     <img src="assets/loading.gif">
 </div>
 
-<h2>{{feedContent?.title}}</h2>
+<h2 class="title">{{feedContent?.title | decodeURIComponent }}</h2>
 
 <div>
     <ul *ngFor="let item of feedContent?.items">
@@ -21,4 +21,8 @@
         <p>Date: {{item?.pubDate}}</p>
         <div [innerHTML]=item?.content></div>
     </ul>
+</div>
+
+<div *ngIf="errorMsg" class="alert alert-danger" role="alert">
+    {{errorMsg}}
 </div>

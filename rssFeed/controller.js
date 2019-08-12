@@ -6,7 +6,6 @@ const getRssFeed = async (req, res, next) => {
     res.send(feedContent)
     next()
   } catch(e) {
-    console.log(e.message)
     res.sendStatus(500) && next(error)
   }
 }
