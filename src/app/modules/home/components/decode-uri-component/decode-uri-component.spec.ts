@@ -1,25 +1,11 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { DecodeURIComponentPipe } from './decode-uri-component';
 
-describe('DecodeUriComponentComponent', () => {
-  let component: DecodeURIComponentPipe;
-  let fixture: ComponentFixture<DecodeURIComponentPipe>;
+describe('TitleCasePipe', () => {
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ DecodeURIComponentPipe ]
-    })
-    .compileComponents();
-  }));
+    let pipe = new DecodeURIComponentPipe();
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(DecodeURIComponentPipe);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('transforms URI', () => {
+        expect(pipe.transform('http://localhost:3001/home?tag=abc')).toBe(decodeURIComponent('http://localhost:3001/home?tag=abc'));
+    });
 });
+

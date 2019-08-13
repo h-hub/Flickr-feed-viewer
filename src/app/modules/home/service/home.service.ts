@@ -1,3 +1,4 @@
+import { Feed } from './../entity/feed';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError  } from 'rxjs';
@@ -10,8 +11,8 @@ export class HomeService {
 
     constructor(private http: HttpClient) { }
 
-    getFeed (tag: string): Observable<any> {
-        return this.http.get<any>('/api/flickerFeed?tag='+encodeURIComponent(tag))
+    getFeed (tag: string): Observable<Feed> {
+        return this.http.get<Feed>('/api/flickerFeed?tag='+encodeURIComponent(tag))
         .pipe(
             retry(1),
             catchError(err => {

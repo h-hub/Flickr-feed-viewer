@@ -1,3 +1,4 @@
+import { Feed } from './../../entity/feed';
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../../service/home.service';
 
@@ -8,7 +9,7 @@ import { HomeService } from '../../service/home.service';
 })
 export class HomepageComponent implements OnInit {
 
-    feedContent: any;
+    feedContent: Feed;
     tag: string;
     errorMsg: string;
 

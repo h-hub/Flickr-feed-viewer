@@ -4,34 +4,17 @@ import { of } from 'rxjs';
 import { HomepageComponent } from './homepage.component';
 import { FormsModule } from '@angular/forms';
 import { DecodeURIComponentPipe } from '../decode-uri-component/decode-uri-component';
+import { Feed } from '../../entity/feed';
 
 
-describe('home component testing', () => {
+describe('HomepageComponent', () => {
 
     let service: HomeService;
     let serviceSpy: jasmine.SpyObj<HomeService>;
     let fixture = null
     let component: HomepageComponent;
     let quoteEl = null;
-    interface Item {
-        title: string;
-        link: string;
-        pubDate: string;
-        author: string;
-        content: string;
-        contentSnippet: string;
-        id: string;
-        isoDate: string;
-    }
     
-    interface Feed {
-        items: Item[];
-        link: string;
-        feedUrl: string;
-        title: string;
-        lastBuildDate: string;
-    }
-
     beforeEach(() => {
         const spy = jasmine.createSpyObj('HomeService', ['getFeed']);
 
@@ -49,13 +32,10 @@ describe('home component testing', () => {
         serviceSpy = TestBed.get(HomeService);
     });
 
-    // it('should use ValueService', () => {
-    //     service = TestBed.get(HomeService);
-    //     expect(service.getFeed("")).toBe('real value');
-    // });
-
     it('#getFeedContent() should receive feedContent', () => {
+
         service = TestBed.get(HomeService);
+
         const expectedFeed: Feed = {
             "items": [
                 {
@@ -74,10 +54,13 @@ describe('home component testing', () => {
             "title": "Uploads from everyone",
             "lastBuildDate": "2019-08-09T12:47:48Z"
         };
+
         serviceSpy.getFeed.and.returnValue(of(expectedFeed));
+
         fixture.detectChanges(); 
-        expect(quoteEl.textContent).toBe('Uploads from everyone');
-        //expect(service.getFeed("")).toEqual(of(expectedFeed), 'service returned stub value');
+        
+        expect(quoteEl.textContent).toBe(expectedFeed.title);
+        
       });
 
 });
