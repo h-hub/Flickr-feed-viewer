@@ -15,7 +15,7 @@ describe('HomeService', () => {
     });
 
     it('should return expected heroes (HttpClient called once)', () => {
-        
+
         const expectedFeed: Feed = {
             "items": [
                 {
@@ -38,10 +38,25 @@ describe('HomeService', () => {
         httpClientSpy.get.and.returnValue(of(expectedFeed));
 
         homeService.getFeed("").subscribe(
-            heroes => expect(heroes).toEqual(expectedFeed, 'expected heroes'),
+            feed => expect(feed).toEqual(expectedFeed, 'expected feed'),
             fail
         );
         expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
     });
+
+    it('should return an error when the server returns a 404', () => {
+        const errorResponse = new HttpErrorResponse({
+          error: 'test 404 error',
+          status: 404, 
+          statusText: 'Not Found'
+        });
+      
+        httpClientSpy.get.and.returnValue(of(errorResponse));
+      
+        homeService.getFeed("").subscribe(
+          feed => fail('expected an error, not feed'),
+          error  => expect(error.status).toEqual(404)
+        );
+      });
 
 });
