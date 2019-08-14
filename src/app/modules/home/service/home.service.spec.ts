@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { HomeService } from './home.service';
 import { Observable, throwError, of } from 'rxjs';
 import { Feed } from '../entity/feed';
+import { asyncError, asyncData } from 'src/testing/async-observable-helpers';
 
 describe('HomeService', () => {
 
@@ -35,7 +36,7 @@ describe('HomeService', () => {
             "lastBuildDate": "2019-08-09T12:47:48Z"
         };
 
-        httpClientSpy.get.and.returnValue(of(expectedFeed));
+        httpClientSpy.get.and.returnValue(asyncData(expectedFeed));
 
         homeService.getFeed("").subscribe(
             feed => expect(feed).toEqual(expectedFeed, 'expected feed'),
@@ -51,7 +52,7 @@ describe('HomeService', () => {
           statusText: 'Not Found'
         });
       
-        httpClientSpy.get.and.returnValue(of(errorResponse));
+        httpClientSpy.get.and.returnValue(asyncError(errorResponse));
       
         homeService.getFeed("").subscribe(
           feed => fail('expected an error, not feed'),
